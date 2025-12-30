@@ -16,15 +16,9 @@
       --card: #ffffffd9;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -92,9 +86,43 @@
       font-weight: 500;
     }
 
-    .video-block {
-      margin-top: 65px;
+    /* carta */
+    .letter {
+      text-align: center;
     }
+
+    .open-letter {
+      background: linear-gradient(135deg, var(--roxo-medio), #b89cff);
+      color: #fff;
+      border: none;
+      padding: 16px 38px;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 15px 35px rgba(155, 107, 255, 0.45);
+      transition: transform 0.3s ease;
+    }
+
+    .open-letter:hover {
+      transform: translateY(-3px);
+    }
+
+    .letter-content {
+      margin-top: 45px;
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+      text-align: left;
+    }
+
+    .letter-content.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .video-block { margin-top: 65px; }
 
     video {
       width: 100%;
@@ -110,9 +138,7 @@
       padding: 90px 25px;
     }
 
-    .final {
-      text-align: center;
-    }
+    .final { text-align: center; }
 
     .signature {
       margin-top: 35px;
@@ -133,7 +159,7 @@
       color: var(--roxo-medio);
     }
 
-    /* partículas roxas */
+    /* partículas */
     .particle {
       position: fixed;
       width: 6px;
@@ -162,126 +188,77 @@
 </section>
 
 <section>
-  <div class="card">
+  <div class="letter">
 
-    <p>Meu amor,</p>
+    <button class="open-letter" onclick="openLetter()">
+      abrir a carta 💌
+    </button>
 
-    <p>
-      Eu estou completamente <span class="highlight">apaixonada por você</span>, de um jeito que eu nunca imaginei que ficaria esse ano de verdade. Espero que cada momento que passamos juntos seja tão especial quanto é para mim, porque sinceramente amo passar cada minuto do meu tempo do seu lado. Porque querendo ou não, você me faz rir quando eu tô triste ou até mesmo com dor, você enche meu coração de <span class="highlight">alegria</span> e muito <span class="highlight">amor</span>. E eu adoro estar pertinho de você, sentindo seu carinho, seus beijinhos e tudo que quero sentir vindo de você.
-    </p>
+    <div class="letter-content card" id="letterContent">
 
-    <p>
-      Você é a minha <span class="highlight">pessoa favorita</span>, pois você sabia que virou ela tão rápido assim? Ainda bem que você decidiu vir me amar e eu agradeço por eu ter tido coragem de ter falado pra você falar aquilo com a sua melhor amiga (Mari Mari). Se não, ficaria morrendo de <span class="highlight">ciúmes</span> até hoje, porque sinceramente o ódio que eu tinha de vocês dois juntos dividindo metadinha, skins e tudo mais, ou até mesmo quando você falava que ia ter que ir call com ela ou mesmo pensar que passavam horas em call ou dela te chamar de meu bem, amor ou vida, isso me deixava louca.
-    </p>
+      <p>Meu amor,</p>
 
-    <p>
-      Eu morria de ciúmes de verdade, sério, tinha um ciúmes enorme que dava vontade de te matar, porque eu que queria tá no lugar dela. E não é que eu consegui um lugar melhor, ainda que ela nunca vai ter? Mas você acredita que foi com esse ciúmes que eu percebi que eu gostava mesmo de você e que eu tava começando a me <span class="highlight">apaixonar</span> por você de verdade?
-    </p>
+      <p>
+        Eu estou completamente <span class="highlight">apaixonada por você</span>, de um jeito que eu nunca imaginei que ficaria esse ano de verdade. Espero que cada momento que passamos juntos seja tão especial quanto é para mim, porque sinceramente amo passar cada minuto do meu tempo do seu lado. Porque querendo ou não, você me faz rir quando eu tô triste ou até mesmo com dor, você enche meu coração de <span class="highlight">alegria</span> e muito <span class="highlight">amor</span>. E eu adoro estar pertinho de você, sentindo seu carinho, seus beijinhos e tudo que quero sentir vindo de você.
+      </p>
 
-    <p>
-      Posso nunca ter te tocado ou ter te sentido você pessoalmente, mas eu me apaixonei pelo seu jeito e pela sua forma que me faz feliz com tão pouco, só de você respirar já me faz feliz.
-    </p>
+      <p>
+        Você é a minha <span class="highlight">pessoa favorita</span>, pois você sabia que virou ela tão rápido assim? Ainda bem que você decidiu vir me amar e eu agradeço por eu ter tido coragem de ter falado pra você falar aquilo com a sua melhor amiga (Mari Mari). Se não, ficaria morrendo de <span class="highlight">ciúmes</span> até hoje, porque sinceramente o ódio que eu tinha de vocês dois juntos dividindo metadinha, skins e tudo mais, ou até mesmo quando você falava que ia ter que ir call com ela ou mesmo pensar que passavam horas em call ou dela te chamar de meu bem, amor ou vida, isso me deixava louca.
+      </p>
 
-    <p>
-      Você sabe que em Frozen falam que só com um ato de <span class="highlight">amor verdadeiro</span> pode aquecer um coração gelado, e acredita que você aqueceu o meu coração com seu amor. Já que estou citando Frozen, já posso falar que você é muito o <span class="highlight">Kristoff</span> da minha Anna, como também é muito o <span class="highlight">Meliodas</span> da minha Elizabeth.
-    </p>
+      <p>
+        Eu morria de ciúmes de verdade, sério, tinha um ciúmes enorme que dava vontade de te matar, porque eu que queria tá no lugar dela. E não é que eu consegui um lugar melhor, ainda que ela nunca vai ter? Mas você acredita que foi com esse ciúmes que eu percebi que eu gostava mesmo de você e que eu tava começando a me <span class="highlight">apaixonar</span> por você de verdade?
+      </p>
 
-    <p>
-      Mas enfim, passaria horas falando quais casais somos, porque sinceramente tem muitos para falar. Você com certeza é o <span class="highlight">melhor namorado do universo</span>, e eu sou a pessoa mais sortuda do mundo por ter você na minha vida.
-    </p>
+      <p>
+        Posso nunca ter te tocado ou ter te sentido você pessoalmente, mas eu me apaixonei pelo seu jeito e pela sua forma que me faz feliz com tão pouco, só de você respirar já me faz feliz.
+      </p>
 
-    <p>
-      Te amo mais do que palavras podem expressar de verdade, mais do que qualquer coisa no mundo. Espero muito ser uma boa companhia e uma boa namorada! Eu te amo mais que tudo nesse mundo, meu amor.
-    </p>
+      <p>
+        Você sabe que em Frozen falam que só com um ato de <span class="highlight">amor verdadeiro</span> pode aquecer um coração gelado, e acredita que você aqueceu o meu coração com seu amor. Já que estou citando Frozen, já posso falar que você é muito o <span class="highlight">Kristoff</span> da minha Anna, como também é muito o <span class="highlight">Meliodas</span> da minha Elizabeth.
+      </p>
 
-    <p>
-      Espero passar mais um <span class="highlight">ano novo juntinho</span> com você ou até mesmo passar um ano inteirinho junto com você do meu ladinho, tocando em você finalmente. Af, aliás, dia <span class="highlight">29/12/2025</span> você me respondeu quando eu perguntei “mas o que a eu tenho que te fez gostar de mim?”
-    </p>
+      <p>
+        Mas enfim, passaria horas falando quais casais somos, porque sinceramente tem muitos para falar. Você com certeza é o <span class="highlight">melhor namorado do universo</span>, e eu sou a pessoa mais sortuda do mundo por ter você na minha vida.
+      </p>
 
-    <p>
-      E pra falar a verdade, você me respondeu coisas que eu nunca imaginei que iriam falar pra mim de verdade. Eu fiquei a pessoa mais feliz nesse dia, você não tem noção, fiquei com meu coração quietinha e claro que chorei um pouquinho também, porque quem não choraria?
-    </p>
+      <p>
+        Te amo mais do que palavras podem expressar de verdade, mais do que qualquer coisa no mundo. Espero muito ser uma boa companhia e uma boa namorada! Eu te amo mais que tudo nesse mundo, meu amor.
+      </p>
 
-    <p>
-      Outra coisa que eu queria falar é que eu <span class="highlight">confio em você 100%</span>. Confio com todas as minhas forças e espero que você confie em mim também. Meu medo agora tá sendo <span class="highlight">perder você</span>. Não tô imaginando minha vida sem meu namorado agora.
-    </p>
+      <p>
+        Espero passar mais um <span class="highlight">ano novo juntinho</span> com você ou até mesmo passar um ano inteirinho junto com você do meu ladinho, tocando em você finalmente. Af, aliás, dia <span class="highlight">29/12/2025</span> você me respondeu quando eu perguntei “mas o que a eu tenho que te fez gostar de mim?”
+      </p>
 
-    <p>
-      Espero que goste desse texto que fiz com todo o meu amor, toda a minha paixão e todo o meu coração nele. Mas o principal que eu quero que você saiba é que eu te amo <span class="highlight">muitooo</span> muito mesmo <span class="highlight">Hyan</span>.
-    </p>
+      <p>
+        E pra falar a verdade, você me respondeu coisas que eu nunca imaginei que iriam falar pra mim de verdade. Eu fiquei a pessoa mais feliz nesse dia, você não tem noção, fiquei com meu coração quietinha e claro que chorei um pouquinho também, porque quem não choraria?
+      </p>
 
-    <p>com todo amor da sua princesa!</p>
+      <p>
+        Outra coisa que eu queria falar é que eu <span class="highlight">confio em você 100%</span>. Confio com todas as minhas forças e espero que você confie em mim também. Meu medo agora tá sendo <span class="highlight">perder você</span>. Não tô imaginando minha vida sem meu namorado agora.
+      </p>
 
-  </div>
-</section>
+      <p>
+        Espero que goste desse texto que fiz com todo o meu amor, toda a minha paixão e todo o meu coração nele. Mas o principal que eu quero que você saiba é que eu te amo <span class="highlight">muitooo</span> muito mesmo <span class="highlight">Hyan</span>.
+      </p>
 
-<section>
-  <h2>Quando eu vejo a gente em outras histórias</h2>
+      <p>com todo amor da sua princesa!</p>
 
-  <div class="video-block">
-    <p>
-      E também quero falar dos <span class="highlight">doramas</span>, os que eu vejo a gente... E também quero ver com você né, porque sim, você vai ver todos eles comigo. Então, vamos começar com os meus queridos <span class="highlight">Zhang Lurang e Su Zaizai</span>.
-    </p>
-    <video src="vídeo 1.mov" controls></video>
-  </div>
-
-  <div class="video-block">
-    <p>
-      Outro que eu também vejo é o <span class="highlight">Hidden Love</span>, que são a <span class="highlight">Sang Zhi</span> e o <span class="highlight">Duan Jiaxu</span>.
-    </p>
-    <video src="vídeo 2.mov" controls></video>
-  </div>
-
-  <div class="video-block">
-    <p>
-      E, por último, os meus favoritos de todos os tempos: <span class="highlight">Wei Zhi</span> e <span class="highlight">Shan Chong</span>, que também vejo muito a gente neles.
-    </p>
-    <video src="vídeo 3.mov" controls></video>
-  </div>
-</section>
-
-<section class="music">
-  <h2>Músicas que eu dedico a você</h2>
-
-  <p style="text-align:center;">
-    Claro que tem muitos outros, mas esses três são os principais para mim, os que eu mais amo e que quero dedicar a você.
-  </p>
-
-  <div style="max-width:560px;margin:40px auto 0;">
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/BUkLAdb6D9s" frameborder="0" allowfullscreen style="border-radius:18px;"></iframe>
-  </div>
-
-  <div style="max-width:560px;margin:40px auto 0;">
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/KXwftNuuVJo" frameborder="0" allowfullscreen style="border-radius:18px;"></iframe>
-  </div>
-</section>
-
-<section class="final">
-  <p>
-    Espero que tenha gostado disso, meu amor. <span class="highlight">Feliz Ano Novo</span>! Que passemos mais anos novos juntinhos e juntos de verdade.
-  </p>
-
-  <div class="signature">
-    <p>De: <span class="highlight">Manuela</span></p>
-    <p>Para: <span class="highlight">Hyan</span></p>
-  </div>
-
-  <div class="secret" onclick="document.querySelector('.secret-message').style.display='block'">
-    ps:
-  </div>
-
-  <div class="secret-message">
-    se você chegou até aqui, é porque já faz parte de mim.
+    </div>
   </div>
 </section>
 
 <script>
+  function openLetter() {
+    const content = document.getElementById('letterContent');
+    content.classList.add('show');
+    document.querySelector('.open-letter').style.display = 'none';
+  }
+
   const sections = document.querySelectorAll('section');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('show');
     });
   }, { threshold: 0.15 });
 

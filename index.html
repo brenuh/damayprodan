@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -33,6 +32,8 @@
       opacity: 0;
       transform: translateY(40px);
       transition: all 1s ease;
+      position: relative;
+      z-index: 2;
     }
 
     section.show {
@@ -96,10 +97,7 @@
     .envelope::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background:
         linear-gradient(135deg, transparent 50%, #e5dbff 50%),
         linear-gradient(-135deg, transparent 50%, #e5dbff 50%);
@@ -111,9 +109,7 @@
 
     .envelope-front {
       position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: #f5efff;
       border-radius: 0 0 18px 18px;
       z-index: 2;
@@ -138,7 +134,6 @@
       box-shadow: 0 10px 25px rgba(155, 107, 255, 0.6);
     }
 
-    /* carta */
     .letter-content {
       margin-top: 70px;
       display: none;
@@ -160,21 +155,27 @@
       box-shadow: 0 25px 70px rgba(75, 0, 130, 0.15);
     }
 
-    /* partículas */
-    .particle {
+    /* corações */
+    .heart {
       position: fixed;
-      width: 6px;
-      height: 6px;
-      background: rgba(155, 107, 255, 0.35);
-      border-radius: 50%;
-      animation: float 14s linear infinite;
+      top: -10vh;
+      font-size: 18px;
+      color: rgba(155, 107, 255, 0.45);
+      animation: fall linear forwards;
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
     }
 
-    @keyframes float {
-      from { transform: translateY(110vh); }
-      to { transform: translateY(-10vh); }
+    @keyframes fall {
+      from {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      to {
+        transform: translateY(115vh) translateX(var(--drift));
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -202,27 +203,19 @@
     <p>Meu amor,</p>
 
     <p>
-      Eu estou completamente <span class="highlight">apaixonada por você</span>, de um jeito que eu nunca imaginei que ficaria esse ano de verdade. Espero que cada momento que passamos juntos seja tão especial quanto é para mim, porque sinceramente amo passar cada minuto do meu tempo do seu lado. Porque querendo ou não, você me faz rir quando eu tô triste ou até mesmo com dor, você enche meu coração de <span class="highlight">alegria</span> e muito <span class="highlight">amor</span>. E eu adoro estar pertinho de você, sentindo seu carinho, seus beijinhos e tudo que quero sentir vindo de você.
+      Eu estou completamente <span class="highlight">apaixonada por você</span>, de um jeito que eu nunca imaginei que ficaria esse ano de verdade. Espero que cada momento que passamos juntos seja tão especial quanto é para mim, porque sinceramente amo passar cada minuto do meu tempo do seu lado. Porque querendo ou não, você me faz rir quando eu tô triste ou até mesmo com dor, você enche meu coração de <span class="highlight">alegria</span> e muito <span class="highlight">amor</span>.
     </p>
 
     <p>
-      Você é a minha <span class="highlight">pessoa favorita</span>, pois você sabia que virou ela tão rápido assim? Ainda bem que você decidiu vir me amar e eu agradeço por eu ter tido coragem de ter falado pra você falar aquilo com a sua melhor amiga (Mari Mari).
+      Você é a minha <span class="highlight">pessoa favorita</span>.
     </p>
 
     <p>
-      Eu morria de ciúmes de verdade, sério, tinha um ciúmes enorme que dava vontade de te matar, porque eu que queria tá no lugar dela.
+      Posso nunca ter te tocado pessoalmente, mas me apaixonei pelo seu jeito.
     </p>
 
     <p>
-      Posso nunca ter te tocado ou ter te sentido você pessoalmente, mas eu me apaixonei pelo seu jeito e pela sua forma que me faz feliz com tão pouco, só de você respirar já me faz feliz.
-    </p>
-
-    <p>
-      Você sabe que em Frozen falam que só com um ato de <span class="highlight">amor verdadeiro</span> pode aquecer um coração gelado.
-    </p>
-
-    <p>
-      Te amo mais do que palavras podem expressar de verdade, mais do que qualquer coisa no mundo. Eu te amo mais que tudo nesse mundo, meu amor.
+      Te amo mais do que palavras podem expressar.
     </p>
 
     <p>com todo amor da sua princesa!</p>
@@ -234,8 +227,7 @@
 <script>
   function openLetter() {
     document.querySelector('.envelope-wrapper').style.display = 'none';
-    const content = document.getElementById('letterContent');
-    content.classList.add('show');
+    document.getElementById('letterContent').classList.add('show');
   }
 
   const sections = document.querySelectorAll('section');
@@ -247,16 +239,21 @@
 
   sections.forEach(section => observer.observe(section));
 
-  for (let i = 0; i < 22; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * 100 + 'vw';
-    particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-    particle.style.opacity = Math.random() * 0.6;
-    document.body.appendChild(particle);
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerText = '💜';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (14 + Math.random() * 14) + 'px';
+    heart.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+    heart.style.animationDuration = (10 + Math.random() * 8) + 's';
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 18000);
   }
+
+  setInterval(createHeart, 700);
 </script>
 
 </body>
 </html>
-```

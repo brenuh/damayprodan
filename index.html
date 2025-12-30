@@ -3,29 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para May ❤️</title>
+  <title>Com amor</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ================= RESET ================= */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Playfair Display', serif;
-      background: #f6d6e3;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #f8cdda, #f5a6c6);
+      color: #4a2c3a;
       overflow-x: hidden;
-      min-height: 100vh;
     }
 
-    /* ================= CAPA / SENHA ================= */
-    .capa {
+    /* VINHETA ROSA */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      background: radial-gradient(circle at center, rgba(255,255,255,0) 55%, rgba(214, 51, 108, 0.18) 100%);
+    }
+    }
+
+    /* PARTÍCULAS */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      font-size: 18px;
+      opacity: 0.6;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-10vh); }
+      to { transform: translateY(110vh); }
+    }
+
+    /* CAPA */
+    .cover {
       position: fixed;
       inset: 0;
       background: url('78e7b822a8b889d47e050e44572d53b9.jpg') center/cover no-repeat;
@@ -35,250 +61,301 @@
       z-index: 10;
     }
 
-    .capa::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 182, 193, 0.45);
+    .overlay {
       backdrop-filter: blur(6px);
+      background: rgba(255, 200, 220, 0.25);
+      border: 2px solid rgba(255,255,255,0.4);
+      padding: 50px 40px;
+      border-radius: 30px;
+      text-align: center;
+      color: #fff;
+      max-width: 420px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+      animation: float 4s ease-in-out infinite;
     }
 
-    .senha-box {
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .overlay h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.6rem;
+      margin-bottom: 25px;
+    }
+
+    .overlay input {
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      width: 100%;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .hint { font-style: italic; }
+    .error { display: none; color: #ffd1dc; margin-top: 10px; }
+
+    main {
+      opacity: 0;
+      transition: opacity 1.8s ease;
+      padding: 100px 20px 160px;
+      max-width: 1000px;
+      margin: auto;
       position: relative;
       z-index: 2;
-      background: rgba(255,255,255,0.85);
-      padding: 30px 40px;
-      border-radius: 20px;
+    }
+
+    main.visible { opacity: 1; }
+
+    /* INTRO */
+    .intro {
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      margin-bottom: 100px;
     }
 
-    .senha-box input {
-      padding: 12px 18px;
-      border-radius: 12px;
-      border: 1px solid #ccc;
-      outline: none;
-      font-size: 1rem;
-      margin-top: 10px;
+    .intro h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      margin-bottom: 18px;
     }
 
-    .senha-box button {
-      margin-top: 15px;
-      padding: 10px 22px;
-      border: none;
-      border-radius: 12px;
-      background: #e89bb5;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .erro {
-      color: #b30000;
-      margin-top: 10px;
-      display: none;
-    }
-
-    /* ================= FUNDO PARTÍCULAS ================= */
-    .particulas {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .particula {
-      position: absolute;
-      font-size: 18px;
-      animation: cair 12s linear infinite;
-      opacity: 0.6;
-    }
-
-    @keyframes cair {
-      from { transform: translateY(-10%); }
-      to { transform: translateY(110vh); }
-    }
-
-    /* ================= ENVELOPE ================= */
-    .container {
-      display: none;
-      padding: 80px 20px;
+    /* ENVELOPE */
+    .letter-wrapper {
       display: flex;
       justify-content: center;
+      margin: 120px 0;
     }
 
     .envelope {
-      width: 340px;
-      height: 220px;
-      background: #f2c2d4;
       position: relative;
-      border-radius: 10px;
+      width: 520px;
+      height: 360px;
+      background: #fdf1f6;
+      border-radius: 18px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.25);
       cursor: pointer;
-      animation: respirar 4s ease-in-out infinite;
+      overflow: hidden;
     }
 
-    @keyframes respirar {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.015); }
-    }
-
-    .envelope.aberto { animation: none; }
-
-    .aba {
+    .flap {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: #ebb0c7;
+      background: linear-gradient(135deg, #f6c1d3, #fdf1f6);
       clip-path: polygon(0 0, 100% 0, 50% 55%);
       transform-origin: top;
-      transition: transform 1.2s ease;
+      transition: transform 1.4s ease;
+      z-index: 3;
     }
 
-    .envelope.aberto .aba {
-      transform: rotateX(180deg);
-    }
+    .envelope.open .flap { transform: rotateX(180deg); }
 
-    .selo {
-      width: 50px;
-      height: 50px;
-      background: #c94f7c;
+    .seal {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 90px;
+      background: radial-gradient(circle at top, #ff8fab, #c9184a);
       border-radius: 50%;
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: transform 0.6s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.4rem;
+      color: #fff;
+      z-index: 4;
     }
 
-    .envelope.aberto .selo {
-      transform: translateX(-50%) scale(0.9) rotate(-8deg);
+    /* CARTA */
+    .letter {
+      position: relative;
+      filter: blur(6px);
+      transform: translateY(80px);
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto 140px;
+      background: #fff8fb url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      padding: 80px 70px;
+      border-radius: 22px;
+      box-shadow: inset 0 0 0 2px #f3c1d1, 0 30px 80px rgba(0,0,0,0.25);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      line-height: 1.9;
+      display: none;
     }
 
-    /* ================= CARTA ================= */
-    .carta {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 300px;
-      background: #fffaf3;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      opacity: 0;
-      transition: all 1.2s ease;
-      font-size: 0.95rem;
-      line-height: 1.6;
+    .letter.show { display: block; animation: reveal 1.6s ease forwards; }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(80px); filter: blur(6px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .envelope.aberto .carta {
-      opacity: 1;
-      transform: translate(-50%, -260px);
-    }
-
-    .depara {
-      font-family: 'Great Vibes', cursive;
+    .letter-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      font-family: 'Dancing Script', cursive;
       font-size: 1.8rem;
-      margin-bottom: 15px;
+      color: #7a2e4a;
+      opacity: 0;
     }
 
-    .assinatura {
-      margin-top: 30px;
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
+    .letter-header span {
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      animation: write 2.2s steps(18, end) forwards;
+    }
+
+    .letter-header span:last-child {
+      animation-delay: 2.4s;
+    }
+
+    @keyframes write {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .letter-header span {
+      position: relative;
+    }
+
+    .signature {
+      margin-top: 50px;
       text-align: right;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: #7a2e4a;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 5s;
     }
 
-    /* ================= VINHETA ================= */
-    .vinheta {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      box-shadow: inset 0 0 120px rgba(255, 150, 190, 0.6);
-      z-index: 5;
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
-    /* ================= VÍDEO ================= */
-    .video {
-      margin-top: 600px;
-      text-align: center;
-    }
+    .letter p { margin-bottom: 26px; }
+
+    /* MÚSICA */
+    .music { text-align: center; margin-top: 160px; }
+    .music h3 { font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-bottom: 25px; }
 
     iframe {
-      max-width: 100%;
-      border-radius: 20px;
+      width: 100%;
+      max-width: 900px;
+      height: 420px;
+      border-radius: 24px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
     }
 
+    @media (max-width: 650px) {
+      body { font-size: 0.95rem; }
+      .envelope { width: 92%; height: 300px; }
+      .letter { padding: 50px 30px; }
+      iframe { height: 230px; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="capa">
-    <div class="senha-box">
-      <h2>Digite a senha 💗</h2>
-      <p>KKKKK tu vai saber rapidinho eu sempre te chamo por essa palavra</p>
-      <input type="text" id="senha" />
-      <br />
-      <button onclick="verificarSenha()">Entrar</button>
-      <div class="erro" id="erro">sinceramente como tu errou isso?</div>
+<div class="particles" id="particles"></div>
+
+<section class="cover" id="cover">
+  <div class="overlay">
+    <h1>Antes de entrar…</h1>
+    <input type="password" id="password" placeholder="Digite a senha" />
+    <div class="hint">KKKKK tu vai saber rapidinho eu sempre te chamo por essa palavra</div>
+    <div class="error" id="error">sinceramente como tu errou isso?</div>
+  </div>
+</section>
+
+<main id="main">
+  <section class="intro">
+    <h2>Pra você, meu amor</h2>
+    <p>Tem coisas que não cabem em mensagens. Então eu fiz um lugar só nosso.</p>
+  </section>
+
+  <div class="letter-wrapper">
+    <div class="envelope" id="openLetter">
+      <div class="flap"></div>
+      <div class="seal">Abrir</div>
     </div>
   </div>
 
-  <div class="particulas" id="particulas"></div>
-
-  <div class="container" id="site">
-    <div class="envelope" id="envelope">
-      <div class="aba"></div>
-      <div class="selo"></div>
-      <div class="carta" id="carta">
-        <div class="depara">De: Dan<br>Para: May</div>
-        <p>tô feliz demais que a gente tá passando esse final de ano juntos... e pode ter certeza que vai ser o primeiro de muitos, viu? Não aceito menos que isso KKKKK Esse ano só foi bom de verdade por sua causa...</p>
-        <div class="assinatura">Dan ❤️</div>
-      </div>
+  <div class="letter" id="letter">
+    <div class="letter-header">
+      <span>DE: Dan</span>
+      <span>PARA: May</span>
     </div>
+    <p>tô feliz demais que a gente tá passando esse final de ano juntos... e pode ter certeza que vai ser o primeiro de muitos, viu? Não aceito menos que isso KKKKK Esse ano só foi bom de verdade por sua causa ter te conhecido foi a melhor coisa que me aconteceu em 2025 e eu direto me pergunto como seria minha vida se vc não tivesse falado cmg naquele dia. Vc é meu melhor presente princesa.</p>
+    <p>Se eu fosse responder msm o que vc tem que me fez gostar de vc eu ia ficar noites acordado falando e não ia terminar vc é simplesmente incrível, a garota mais linda que já vi por dentro e por fora. Cada risada sua ilumina meu dia e o jeito que vc fala, ri e até qnd tá brava ou teimosa e é muito teimosa viu KKKKKK, tudo em vc tem algo especial VC tem um coração enorme e é o tipo de pessoa que a gente conhece uma vez e não esquece nunca mais. E eu? Sou só um cara normal que deu a sorte grande de ter vc.</p>
+    <p>Desde o dia que te conheci minha vida mudou de um jeito que eu não achava possível, vc trouxe paz e uma luz diferente, parece que tudo ganhou mais vida e cor. Vc me faz a pessoa mais feliz do mundo com uma simples mensagem e eu sou apaixonado por cada detalhe seu: seu sorriso, seus olhinhos que eu amo tanto, sua voz, seu cabelo lindo de maravilhoso, literalmente tudo em vc me encanta. e qnd vc diz que é feia eu me recuso a escutar, pq vc é a garota mais perfeita que eu já vi na vida.</p>
+    <p>O que eu sinto por vc não cabe em palavras, ultrapassa a razão. vc me acalma qnd tudo tá dando errado e me desperta partes que eu nem sabia que existiam Já que vc nunca perguntou, vou responder msm assim: sim meu amor, vc é minha prioridade. Eu nunca vou te trocar. Eu me importo com cada sentimento seu e vc é a única pessoa que eu respondo qnd tô mal. Vc pode desabafar cmg sempre pq eu nunca vou te julgar. Eu não me apaixonei por aparência nem por corpo, me apaixonei pelo jeito que vc me trata, pelo seu humor e por como vc demonstra que gosta de mim.</p>
+    <p>Não importa qnts brigas a gente tenha ou qnts problemas apareçam, vamos enfrentar juntos. Eu nunca vou desistir de vc pq é com vc que eu me sinto feliz e amado. Quero dividir meus melhores momentos contigo e cumprir todas as promessas que eu te fiz, mostrando com atitudes que vc tá segura cmg. Eu vou te amar independente de tudo, msm se vc estiver longe, feia que eu acho impossível né ou com raiva eu sempre vou cuidar de vc pra sempre. Te amo muito minha bb, vc é meu mundo todinho e o amor da minha vida. Te amo do fundo da minha alma, minha princesa! ❤️</p>
+      <div class="signature">Dan ❤️</div>
   </div>
 
-  <div class="video">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/y1cBhJLNNXU" allowfullscreen></iframe>
-  </div>
+  <section class="music">
+    <h3>Uma música que me lembra você</h3>
+    <iframe src="https://www.youtube.com/embed/y1cBhJLNNXU" allowfullscreen></iframe>
+  </section>
+</main>
 
-  <div class="vinheta"></div>
+<audio id="paperSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8b16c67a39.mp3"></audio>
 
-  <script>
-    function verificarSenha() {
-      const valor = document.getElementById('senha').value.toLowerCase();
-      if (valor === 'cabeçuda') {
-        document.querySelector('.capa').style.display = 'none';
-        document.getElementById('site').style.display = 'flex';
-      } else {
-        document.getElementById('erro').style.display = 'block';
-      }
+<script>
+  const input = document.getElementById('password');
+  const error = document.getElementById('error');
+  const cover = document.getElementById('cover');
+  const main = document.getElementById('main');
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      if (input.value.toLowerCase() === 'cabeçuda') {
+        cover.style.opacity = '0';
+        setTimeout(() => { cover.style.display = 'none'; main.classList.add('visible'); }, 1400);
+      } else error.style.display = 'block';
     }
+  });
 
-    const envelope = document.getElementById('envelope');
-    envelope.addEventListener('click', () => {
-      envelope.classList.add('aberto');
-      document.body.classList.add('carta-visivel');
-    });
+  const envelope = document.getElementById('openLetter');
+  const letter = document.getElementById('letter');
+  const sound = document.getElementById('paperSound');
 
-    const particulas = document.getElementById('particulas');
-    for (let i = 0; i < 20; i++) {
-      const span = document.createElement('span');
-      span.className = 'particula';
-      span.innerText = '❤';
-      span.style.left = Math.random() * 100 + 'vw';
-      span.style.animationDelay = Math.random() * 10 + 's';
-      particulas.appendChild(span);
-    }
+  envelope.onclick = () => {
+    envelope.classList.add('open');
+    sound.play();
+    setTimeout(() => {
+      letter.classList.add('show');
+      letter.scrollIntoView({ behavior: 'smooth' });
+    }, 1600);
+  };
 
-    window.addEventListener('scroll', () => {
-      const carta = document.getElementById('carta');
-      const y = window.scrollY;
-      carta.style.transform = `translate(-50%, ${-260 + y * 0.05}px) rotate(${y * 0.01}deg)`;
-    });
-  </script>
+  // partículas
+  const icons = ['❤️','✨','🌸'];
+  const particles = document.getElementById('particles');
+
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.textContent = icons[Math.floor(Math.random()*icons.length)];
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.animationDuration = 10 + Math.random()*10 + 's';
+    particles.appendChild(p);
+  }
+</script>
 
 </body>
 </html>

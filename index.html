@@ -1,183 +1,174 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Para você, Hyan 💜</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Para você, Hyan 💜</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --roxo-claro: #f3eaff;
-      --roxo-medio: #9b6bff;
-      --roxo-escuro: #2a0d4e;
-      --texto: #2b2b2b;
-      --card: #ffffff;
-    }
+<style>
+:root{
+  --roxo-claro:#f3eaff;
+  --roxo-medio:#9b6bff;
+  --roxo-escuro:#2a0d4e;
+  --texto:#2b2b2b;
+  --card:#ffffff;
+}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #f7f0ff, #e9ddff);
-      color: var(--texto);
-      overflow-x: hidden;
-    }
+body{
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(180deg,#f7f0ff,#e9ddff);
+  color:var(--texto);
+  overflow-x:hidden;
+}
 
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 90px 20px;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease;
-      position: relative;
-      z-index: 2;
-    }
+section{
+  max-width:900px;
+  margin:auto;
+  padding:90px 20px;
+  position:relative;
+  z-index:2;
+}
 
-    section.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+h1,h2{
+  font-family:'Playfair Display',serif;
+  text-align:center;
+}
 
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
-      text-align: center;
-    }
+h1{font-size:2.7rem;}
 
-    h1 { font-size: 2.7rem; }
+p{
+  font-size:1.05rem;
+  line-height:1.9;
+  margin-bottom:20px;
+  white-space:pre-line;
+}
 
-    p {
-      font-size: 1.05rem;
-      line-height: 1.9;
-      margin-bottom: 20px;
-      white-space: pre-line;
-    }
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      opacity: 1;
-      transform: none;
-    }
+.hero span{
+  display:block;
+  margin-top:15px;
+  font-size:1.2rem;
+  opacity:.85;
+}
 
-    .hero span {
-      display: block;
-      margin-top: 15px;
-      font-size: 1.2rem;
-      opacity: 0.85;
-    }
+.highlight{
+  color:var(--roxo-medio);
+  font-weight:500;
+}
 
-    .highlight {
-      color: var(--roxo-medio);
-      font-weight: 500;
-    }
+/* CARTA */
+.letter-scene{
+  perspective:1200px;
+  display:flex;
+  justify-content:center;
+  margin-top:60px;
+}
 
-    /* envelope */
-    .envelope-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
+.envelope{
+  width:340px;
+  height:230px;
+  position:relative;
+  cursor:pointer;
+}
 
-    .envelope {
-      position: relative;
-      width: 320px;
-      height: 220px;
-      background: #eee;
-      border-radius: 0 0 18px 18px;
-      box-shadow: 0 20px 45px rgba(75, 0, 130, 0.25);
-      overflow: hidden;
-    }
+.envelope-back{
+  width:100%;
+  height:100%;
+  background:#efe6ff;
+  border-radius:0 0 24px 24px;
+  box-shadow:0 20px 45px rgba(75,0,130,.25);
+  position:absolute;
+  inset:0;
+  z-index:1;
+}
 
-    .envelope::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(135deg, transparent 50%, #e5dbff 50%),
-        linear-gradient(-135deg, transparent 50%, #e5dbff 50%);
-      background-size: 50% 100%;
-      background-position: left, right;
-      background-repeat: no-repeat;
-      z-index: 1;
-    }
+.envelope-flap{
+  width:100%;
+  height:100%;
+  background:#e3d6ff;
+  position:absolute;
+  inset:0;
+  clip-path:polygon(0 0,100% 0,50% 55%);
+  transform-origin:top;
+  transition:transform 1s ease;
+  z-index:3;
+}
 
-    .envelope-front {
-      position: absolute;
-      inset: 0;
-      background: #f5efff;
-      border-radius: 0 0 18px 18px;
-      z-index: 2;
-    }
+.envelope.open .envelope-flap{
+  transform:rotateX(-160deg);
+}
 
-    .seal {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 55px;
-      height: 55px;
-      background: linear-gradient(135deg, var(--roxo-medio), #c2a6ff);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 0.85rem;
-      cursor: pointer;
-      z-index: 3;
-      box-shadow: 0 10px 25px rgba(155, 107, 255, 0.6);
-    }
+.seal{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:58px;
+  height:58px;
+  background:linear-gradient(135deg,var(--roxo-medio),#c2a6ff);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:.85rem;
+  z-index:4;
+  box-shadow:0 10px 25px rgba(155,107,255,.6);
+  transition:opacity .5s ease;
+}
 
-    .letter-content {
-      margin-top: 70px;
-      display: none;
-      opacity: 0;
-      transform: translateY(25px);
-      transition: all 0.8s ease;
-    }
+.envelope.open .seal{
+  opacity:0;
+}
 
-    .letter-content.show {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
+.letter-paper{
+  position:absolute;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%) translateY(60px);
+  width:90%;
+  background:var(--card);
+  border-radius:28px;
+  padding:45px;
+  box-shadow:0 25px 70px rgba(75,0,130,.15);
+  opacity:0;
+  transition:all 1.2s ease;
+  z-index:2;
+}
 
-    .card {
-      background: var(--card);
-      border-radius: 30px;
-      padding: 45px;
-      box-shadow: 0 25px 70px rgba(75, 0, 130, 0.15);
-    }
+.envelope.open + .letter-paper{
+  transform:translateX(-50%) translateY(-160px);
+  opacity:1;
+}
 
-    /* corações */
-    .heart {
-      position: fixed;
-      top: -10vh;
-      font-size: 18px;
-      color: rgba(155, 107, 255, 0.45);
-      animation: fall linear forwards;
-      pointer-events: none;
-      z-index: 1;
-    }
+/* corações */
+.heart{
+  position:fixed;
+  top:-10vh;
+  font-size:18px;
+  color:rgba(155,107,255,.45);
+  animation:fall linear forwards;
+  pointer-events:none;
+  z-index:1;
+}
 
-    @keyframes fall {
-      from {
-        transform: translateY(0) translateX(0);
-        opacity: 0;
-      }
-      10% { opacity: 1; }
-      to {
-        transform: translateY(115vh) translateX(var(--drift));
-        opacity: 0;
-      }
-    }
-  </style>
+@keyframes fall{
+  from{transform:translateY(0) translateX(0);opacity:0;}
+  10%{opacity:1;}
+  to{transform:translateY(115vh) translateX(var(--drift));opacity:0;}
+}
+</style>
 </head>
 
 <body>
@@ -191,68 +182,135 @@
 
 <section>
 
-  <div class="envelope-wrapper">
-    <div class="envelope">
-      <div class="envelope-front"></div>
-      <div class="seal" onclick="openLetter()">Abrir</div>
+  <div class="letter-scene">
+    <div>
+      <div class="envelope" onclick="openLetter(this)">
+        <div class="envelope-back"></div>
+        <div class="envelope-flap"></div>
+        <div class="seal">abrir</div>
+      </div>
+
+      <div class="letter-paper">
+        <p>Meu amor,</p>
+
+        <p>
+Eu estou completamente <span class="highlight">apaixonada por você</span>, de um jeito que eu nunca imaginei que ficaria esse ano de verdade. Espero que cada momento que passamos juntos seja tão especial quanto é para mim, porque sinceramente amo passar cada minuto do meu tempo do seu lado.
+        </p>
+
+        <p>
+Você é a minha <span class="highlight">pessoa favorita</span>, e eu adoro estar pertinho de você, sentindo seu carinho, seus beijinhos e tudo que quero sentir vindo de você.
+        </p>
+
+        <p>
+Te amo mais do que palavras podem expressar de verdade.
+        </p>
+
+        <p>com todo amor da sua princesa!</p>
+      </div>
     </div>
   </div>
 
-  <div class="letter-content card" id="letterContent">
+</section>
+  
+<section>
+  <h2>Quando eu vejo a gente em outras histórias</h2>
 
-    <p>Meu amor,</p>
-
+  <div class="video-block">
     <p>
-      Eu estou completamente <span class="highlight">apaixonada por você</span>, de um jeito que eu nunca imaginei que ficaria esse ano de verdade. Espero que cada momento que passamos juntos seja tão especial quanto é para mim, porque sinceramente amo passar cada minuto do meu tempo do seu lado. Porque querendo ou não, você me faz rir quando eu tô triste ou até mesmo com dor, você enche meu coração de <span class="highlight">alegria</span> e muito <span class="highlight">amor</span>.
+      E também quero falar dos <span class="highlight">doramas</span>, os que eu vejo a gente... E também quero ver com você né, porque sim, você vai ver todos eles comigo. Então, vamos começar com os meus queridos <span class="highlight">Zhang Lurang e Su Zaizai</span>.
     </p>
-
-    <p>
-      Você é a minha <span class="highlight">pessoa favorita</span>.
-    </p>
-
-    <p>
-      Posso nunca ter te tocado pessoalmente, mas me apaixonei pelo seu jeito.
-    </p>
-
-    <p>
-      Te amo mais do que palavras podem expressar.
-    </p>
-
-    <p>com todo amor da sua princesa!</p>
-
+    <video src="vídeo 1.mov" controls></video>
   </div>
 
+  <div class="video-block">
+    <p>
+      Outro que eu também vejo é o <span class="highlight">Hidden Love</span>, que são a <span class="highlight">Sang Zhi</span> e o <span class="highlight">Duan Jiaxu</span>.
+    </p>
+    <video src="vídeo 2.mov" controls></video>
+  </div>
+
+  <div class="video-block">
+    <p>
+      E, por último, os meus favoritos de todos os tempos: <span class="highlight">Wei Zhi</span> e <span class="highlight">Shan Chong</span>, que também vejo muito a gente neles.
+    </p>
+    <video src="vídeo 3.mov" controls></video>
+  </div>
+</section>
+
+<section class="music">
+  <h2>Músicas que eu dedico a você</h2>
+
+  <p style="text-align:center;">
+    Claro que tem muitos outros, mas esses três são os principais para mim, os que eu mais amo e que quero dedicar a você.
+  </p>
+
+  <div style="max-width:560px;margin:40px auto 0;">
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/BUkLAdb6D9s" frameborder="0" allowfullscreen style="border-radius:18px;"></iframe>
+  </div>
+
+  <div style="max-width:560px;margin:40px auto 0;">
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/KXwftNuuVJo" frameborder="0" allowfullscreen style="border-radius:18px;"></iframe>
+  </div>
+</section>
+
+<section class="final">
+  <p>
+    Espero que tenha gostado disso, meu amor. <span class="highlight">Feliz Ano Novo</span>! Que passemos mais anos novos juntinhos e juntos de verdade.
+  </p>
+
+  <div class="signature">
+    <p>De: <span class="highlight">Manuela</span></p>
+    <p>Para: <span class="highlight">Hyan</span></p>
+  </div>
+
+  <div class="secret" onclick="document.querySelector('.secret-message').style.display='block'">
+    ps:
+  </div>
+
+  <div class="secret-message">
+    Se você chegou até aqui, é porque já faz parte de mim.
+  </div>
 </section>
 
 <script>
-  function openLetter() {
-    document.querySelector('.envelope-wrapper').style.display = 'none';
-    document.getElementById('letterContent').classList.add('show');
-  }
-
   const sections = document.querySelectorAll('section');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('show');
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
     });
   }, { threshold: 0.15 });
 
   sections.forEach(section => observer.observe(section));
 
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerText = '💜';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = (14 + Math.random() * 14) + 'px';
-    heart.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
-    heart.style.animationDuration = (10 + Math.random() * 8) + 's';
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 18000);
+  for (let i = 0; i < 22; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+    particle.style.opacity = Math.random() * 0.6;
+    document.body.appendChild(particle);
   }
+</script>
 
-  setInterval(createHeart, 700);
+  <script>
+function openLetter(el){
+  el.classList.add('open');
+}
+
+function createHeart(){
+  const heart=document.createElement('div');
+  heart.className='heart';
+  heart.innerText='💜';
+  heart.style.left=Math.random()*100+'vw';
+  heart.style.fontSize=(14+Math.random()*14)+'px';
+  heart.style.setProperty('--drift',(Math.random()*60-30)+'px');
+  heart.style.animationDuration=(10+Math.random()*8)+'s';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),18000);
+}
+setInterval(createHeart,700);
 </script>
 
 </body>
